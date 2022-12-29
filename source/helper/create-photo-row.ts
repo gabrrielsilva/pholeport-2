@@ -1,22 +1,7 @@
-import '../config/layout';
 import { photo_gap } from '../config/layout';
+import '../config/styles';
 
-export function create_photo_row(photo_columns: {
-  width: string;
-  table: {
-      widths: number[];
-      heights: number[];
-      body: ((string | {
-          style: string;
-          colSpan: number;
-          text: string;
-      })[] | {
-          image: string;
-          width: number;
-          height: number;
-      }[])[];
-  };
-}[]) {
+export function create_photo_row(photo_columns: any[], pageBreak: string) {
   return {
     style: 'columns',
     columns: [
@@ -24,6 +9,6 @@ export function create_photo_row(photo_columns: {
       photo_columns[1],
     ],
     columnGap: photo_gap,
-    // pageBreak,
+    pageBreak,
   };
 }
