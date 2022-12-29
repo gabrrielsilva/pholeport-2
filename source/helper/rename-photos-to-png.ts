@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { kmz_extracted } from '../paths';
+import { kmz_extracted } from '../config/paths';
 
 export function rename_photos_to_png() {
   try {
