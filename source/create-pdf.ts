@@ -14,7 +14,7 @@ export function create_pdf(filename: string, header: any, photo_layouts: any[]) 
     header,
     content: [photo_layouts],
     styles,
-    
+    compress: true
   }
 
   const pdf = printer.createPdfKitDocument(doc_definition);
