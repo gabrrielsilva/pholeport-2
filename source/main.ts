@@ -29,7 +29,7 @@ let start_time = Date.now();
       if (element_name.toLowerCase().startsWith('sub')) path_names.push({ name: element_name.toLowerCase(), index: geo_json.features.indexOf(element) });
     }
   }
-  
+
   const placemark_names_sorted = placemark_names.sort((a, b) => a.name - b.name);
   const path_names_sorted = path_names.sort((a, b) => +a.name - +b.name);
 

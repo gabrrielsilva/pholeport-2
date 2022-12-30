@@ -16,6 +16,7 @@ type Answer = {
 export async function ask_questions(): Promise<Answer> {
   const logos = fs.readdirSync('source/static/images/logos');
 
+  console.log('');
   const answer: Answer = await inquirer.prompt([
     ask_question('id', 'Qual o id do projeto?'),
     ask_question('titulo', 'Qual o titulo do projeto?'),
