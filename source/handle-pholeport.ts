@@ -1,6 +1,5 @@
 import { kmz_extracted } from './config/paths';
 import { create_pdf } from './create-pdf';
-import { ask_questions } from './helper/ask-questions';
 import { convert_kml_to_geojson } from './helper/convert-kml-to-geojson';
 import { create_header } from './helper/create-header';
 import { create_photo_column } from './helper/create-photo-column';
@@ -8,14 +7,29 @@ import { create_photo_row } from './helper/create-photo-row';
 import { handle_kmz_file } from './helper/handle-kmz-file';
 import { rename_photo_folder } from './helper/rename-photo-folder';
 import { rename_photos_to_png } from './helper/rename-photos-to-png';
-import { show_summary } from './helper/show-summary';
 import { verify_numbering_errors } from './helper/verify-numbering-errors';
 
+export type Input = {
+  id: string,
+  titulo: string,
+  seguimento: string, 
+  localidade: string,
+  site_abordagem: string,
+  versao: string,
+  input_file_path: string
+}
 
-export async function handle_pholeport() {
+type Output = {
+  poles_amount: number,
+  photos_amount: number,
+  poles_without_photos: number,
+  timing: number
+}
+
+export async function handle_pholeport({ id, titulo, seguimento, localidade, site_abordagem, versao, input_file_path }: Input): Promise<Output | undefined> {
   let start_time = Date.now();
   
-  await handle_kmz_file();
+  await handle_kmz_file(input_file_path);
 
   const placemark_names: { name: number, index: number }[] = []; // for poles
   const path_names: { name: string, index: number }[] = []; // for ducts
@@ -68,12 +82,16 @@ export async function handle_pholeport() {
       
       // last placemark
       if (i === placemark_names_sorted.length - 1) {
-        const answer = await ask_questions();
-        const { id, titulo, seguimento, localidade, site_abordagem, versao, left_logo, right_logo } = answer;
-        const header = create_header(id, titulo, seguimento, localidade, site_abordagem, versao, left_logo, right_logo);
+        const header = create_header(id, titulo, seguimento, localidade, site_abordagem, versao, 'tim.png', 'to-brasil.png');
         create_pdf(`TIM_PPIR_ID${id}_RF_R00`, header, photo_rows);
-        show_summary(placemark_names_sorted.length, photos_amount, placemark_names_sorted.length * 2 - photos_amount, elapsed_time);
+
+        return {
+          poles_amount: placemark_names_sorted.length,
+          photos_amount: photos_amount,
+          poles_without_photos: placemark_names_sorted.length * 2 - photos_amount,
+          timing: elapsed_time
+        }
       };
     }
-  };
+  }
 }

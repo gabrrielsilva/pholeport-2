@@ -1,5 +1,3 @@
-import chalk from 'chalk';
-
 const placemarks_numbering_errors: number[] = [];
 
 export function verify_numbering_errors(placemark_names: { name: number | string, index: number }[]): boolean {  
@@ -15,8 +13,6 @@ export function verify_numbering_errors(placemark_names: { name: number | string
     }
   });
   if (placemarks_numbering_errors.length >= 1) throw new Error(`Cadê o(s) marcador(es): ${placemarks_numbering_errors}?`);
-  
-  console.log(chalk.italic.rgb(196, 102, 218)('Numeração validada...'));
-  
+    
   return true;
 }

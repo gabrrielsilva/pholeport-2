@@ -14,7 +14,6 @@
     "@types/decompress": "^4.2.4",
     "@types/electron": "^1.6.10",
     "@types/geojson": "^7946.0.10",
-    "@types/inquirer": "^9.0.3",
     "@types/node": "^18.11.18",
     "@types/pdfmake": "^0.2.2",
     "@types/xmldom": "^0.1.31",
@@ -24,11 +23,8 @@
   },
   "dependencies": {
     "@tmcw/togeojson": "^5.5.0",
-    "boxen": "^5.1.2",
-    "chalk": "^4.1.2",
     "decompress": "^4.2.1",
     "geojson": "^0.5.0",
-    "inquirer": "^8.2.4",
     "pdfmake": "^0.2.7",
     "xmldom": "^0.6.0"
   }
