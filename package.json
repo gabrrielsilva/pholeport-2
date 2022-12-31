@@ -2,9 +2,10 @@
   "name": "pholeport-2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "source/main.ts",
   "scripts": {
-    "dev": "tsnd --respawn --transpile-only source/main.ts"
+    "build": "npx tsc",
+    "start": "npm run build && electron ./dist/main.js"
   },
   "keywords": [],
   "author": "",
@@ -16,17 +17,18 @@
     "@types/node": "^18.11.18",
     "@types/pdfmake": "^0.2.2",
     "@types/xmldom": "^0.1.31",
+    "electron": "^22.0.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.9.4"
   },
   "dependencies": {
     "@tmcw/togeojson": "^5.5.0",
+    "boxen": "^5.1.2",
+    "chalk": "^4.1.2",
     "decompress": "^4.2.1",
     "geojson": "^0.5.0",
     "inquirer": "^8.2.4",
     "pdfmake": "^0.2.7",
-    "xmldom": "^0.6.0",
-    "boxen": "^5.1.2",
-    "chalk": "^4.1.2"
+    "xmldom": "^0.6.0"
   }
 }
