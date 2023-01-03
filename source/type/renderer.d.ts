@@ -1,4 +1,4 @@
-export interface IPholeportAPI {
+export interface PholeportAPI {
   handle_pholeport: ({
     id,
     titulo,
@@ -25,6 +25,6 @@ export interface IPholeportAPI {
 
 declare global {
   interface Window {
-    pholeport: IPholeportAPI
+    pholeport: PholeportAPI
   }
 }

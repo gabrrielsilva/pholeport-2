@@ -6,13 +6,13 @@ import { pdf_style } from '../config/pdf-style';
 
 const printer = new PdfPrinter(fonts);
 
-export function create_pdf(filename: string, header: any, photo_layouts: any[]) {
+export function create_pdf(filename: string, header: any, layout: any[]) {
   const doc_definition: TDocumentDefinitions = {
     pageSize: 'A4',
     pageOrientation: 'portrait',
     pageMargins: [0, 95, 0, 0],
     header,
-    content: [photo_layouts],
+    content: [layout],
     styles: pdf_style,
     compress: true
   }

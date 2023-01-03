@@ -17,7 +17,7 @@ function create_window() {
 }
 
 app.whenReady().then(async () => {
-  await import('./main-process/pholeport/pholeport-async');
+  await import('./main-process/pholeport-async');
   create_window();
 });
 
