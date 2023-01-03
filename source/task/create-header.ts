@@ -18,11 +18,11 @@ export function create_header(
       heights: header_height,
       body: [
         [
-          { rowSpan: 4, image: `source/static/images/logos/${left_logo}`, fit: [100, 100], alignment: 'center', margin: [0, 10] },
+          { rowSpan: 4, image: `public/image/logo/${left_logo}`, fit: [100, 100], alignment: 'center', margin: [0, 10] },
           { rowSpan: 2, text: `RELATÓRIO FOTOGRÁFICO\n ${seguimento}`, style: 'title_header' },
           { rowSpan: 2, text: `ID SGI/GL SGP\n ${id}`, style: 'info_header' },
           { rowSpan: 2, text: `SITE/ABORD\n ${site_abordagem}`, style: 'info_header' },
-          { rowSpan: 4, image: `source/static/images/logos/${right_logo}`, fit: [100, 100], alignment: 'center', margin: [0, 10] },
+          { rowSpan: 4, image: `public/image/logo/${right_logo}`, fit: [100, 100], alignment: 'center', margin: [0, 10] },
         ],
         [],
         [

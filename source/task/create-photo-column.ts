@@ -2,7 +2,7 @@ import { kmz_extracted } from '../config/path';
 import { photo_header_height, photo_height, photo_width } from '../config/pdf-layout';
 import '../config/pdf-style';
 
-const no_photo_path = 'source/static/images/no-photo-infinitel.png';
+const no_photo_path = 'public/image/no-photo-infinitel.png';
 
 export function create_photo_column(
   placemark_name: number, 

@@ -1,5 +1,5 @@
 import { ipcMain } from 'electron';
-import { handle_pholeport, Input } from 'source/main/handle-pholeport';
+import { handle_pholeport, Input } from '../../../main/handle-pholeport';
 
 ipcMain.handle(
   'pholeport',
