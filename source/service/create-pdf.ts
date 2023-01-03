@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import PdfPrinter from 'pdfmake';
 import { TDocumentDefinitions } from 'pdfmake/interfaces';
-import { fonts } from './config/layout';
-import styles from './config/styles';
+import { fonts } from '../config/pdf-layout';
+import { pdf_style } from '../config/pdf-style';
 
 const printer = new PdfPrinter(fonts);
 
@@ -13,7 +13,7 @@ export function create_pdf(filename: string, header: any, photo_layouts: any[]) 
     pageMargins: [0, 95, 0, 0],
     header,
     content: [photo_layouts],
-    styles,
+    styles: pdf_style,
     compress: true
   }
 

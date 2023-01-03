@@ -1,6 +1,6 @@
 import fs from 'node:fs';
-import { kmz_extracted } from '../config/paths';
-import { extract_files } from '../util/extract-files';
+import { kmz_extracted } from '../config/path';
+import { extract_files } from '../service/extract-files';
 
 export async function handle_kmz_file(kmz_file_path: string) {
   const kmz_copy_path = kmz_extracted + '/' + kmz_file_path.split('\\').pop();

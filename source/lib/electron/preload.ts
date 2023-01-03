@@ -11,5 +11,5 @@ type Data = {
 }
 
 contextBridge.exposeInMainWorld('pholeport', {
-  handle_pholeport: (data: Data) => ipcRenderer.send('pholeport', data)
+  handle_pholeport: (data: Data) => ipcRenderer.invoke('pholeport', data)
 });

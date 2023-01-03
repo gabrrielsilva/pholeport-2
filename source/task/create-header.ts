@@ -1,5 +1,5 @@
-import { header_height, header_widths } from '../config/layout';
-import '../config/styles';
+import { header_height, header_widths } from '../config/pdf-layout';
+import '../config/pdf-style';
 
 export function create_header(
   id: string, 

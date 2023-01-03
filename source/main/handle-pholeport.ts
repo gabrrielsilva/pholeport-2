@@ -1,13 +1,13 @@
-import { kmz_extracted } from './config/paths';
-import { create_pdf } from './create-pdf';
-import { convert_kml_to_geojson } from './helper/convert-kml-to-geojson';
-import { create_header } from './helper/create-header';
-import { create_photo_column } from './helper/create-photo-column';
-import { create_photo_row } from './helper/create-photo-row';
-import { handle_kmz_file } from './helper/handle-kmz-file';
-import { rename_photo_folder } from './helper/rename-photo-folder';
-import { rename_photos_to_png } from './helper/rename-photos-to-png';
-import { verify_numbering_errors } from './helper/verify-numbering-errors';
+import { kmz_extracted } from '../config/path';
+import { convert_kml_to_geojson } from '../service/convert-kml-to-geojson';
+import { create_pdf } from '../service/create-pdf';
+import { create_header } from '../task/create-header';
+import { create_photo_column } from '../task/create-photo-column';
+import { create_photo_row } from '../task/create-photo-row';
+import { handle_kmz_file } from '../task/handle-kmz-file';
+import { rename_photo_folder } from '../task/rename-photo-folder';
+import { rename_photos_to_png } from '../task/rename-photos-to-png';
+import { verify_numbering_errors } from '../task/verify-numbering-errors';
 
 export type Input = {
   id: string,
@@ -26,9 +26,9 @@ type Output = {
   timing: number
 }
 
-export async function handle_pholeport({ id, titulo, seguimento, localidade, site_abordagem, versao, input_file_path }: Input): Promise<Output | undefined> {
+export async function handle_pholeport({ id, titulo, seguimento, localidade, site_abordagem, versao, input_file_path }: Input): Promise<Output> {
   let start_time = Date.now();
-  
+
   await handle_kmz_file(input_file_path);
 
   const placemark_names: { name: number, index: number }[] = []; // for poles
@@ -94,4 +94,6 @@ export async function handle_pholeport({ id, titulo, seguimento, localidade, sit
       };
     }
   }
-}
+
+  throw new Error('Internal server error');
+};

@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import { kmz_extracted } from '../config/paths';
+import { kmz_extracted } from '../config/path';
 
 export async function rename_photos_to_png(): Promise<void> {
   try {

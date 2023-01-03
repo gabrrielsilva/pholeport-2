@@ -1,6 +1,6 @@
 import { StyleDictionary } from 'pdfmake/interfaces';
 
-const styles: StyleDictionary = {
+const pdf_style: StyleDictionary = {
   header: { margin: [0, 0, 0, 0] },
   title_header: { fontSize: 13, bold: true, alignment: 'center' },
   info_header: { fontSize: 9, bold: true },
@@ -8,4 +8,5 @@ const styles: StyleDictionary = {
   title_photo_table: { alignment: 'center', fontSize: 10, bold: true, color: 'white', fillColor: '#1F2937' },
 };
 
-export default styles;
+export { pdf_style };
+

@@ -1,5 +1,5 @@
-import { photo_gap } from '../config/layout';
-import '../config/styles';
+import { photo_gap } from '../config/pdf-layout';
+import '../config/pdf-style';
 
 export function create_photo_row(photo_columns: any[], pageBreak: string) {
   return {
