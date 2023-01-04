@@ -16,7 +16,9 @@ export type Input = {
   localidade: string,
   site_abordagem: string,
   versao: string,
-  input_file_path: string
+  input_file_path: string,
+  left_logo: string,
+  right_logo: string,
 }
 
 type Output = {
@@ -26,7 +28,7 @@ type Output = {
   timing: number
 }
 
-export async function handle_pholeport({ id, titulo, seguimento, localidade, site_abordagem, versao, input_file_path }: Input): Promise<Output> {
+export async function handle_pholeport({ id, titulo, seguimento, localidade, site_abordagem, versao, input_file_path, left_logo, right_logo }: Input): Promise<Output> {
   let start_time = Date.now();
 
   await handle_kmz_file(input_file_path);
@@ -82,7 +84,7 @@ export async function handle_pholeport({ id, titulo, seguimento, localidade, sit
       
       // last placemark
       if (i === placemark_names_sorted.length - 1) {
-        const header = create_header(id, titulo, seguimento, localidade, site_abordagem, versao, 'tim.png', 'to-brasil.png');
+        const header = create_header(id, titulo, seguimento, localidade, site_abordagem, versao, left_logo, right_logo);
         create_pdf(`TIM_PPIR_ID${id}_RF_R00`, header, photo_rows);
 
         return {
