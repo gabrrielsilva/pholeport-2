@@ -55,7 +55,7 @@ function App() {
     <div className='w-screen h-screen p-10'>
       <H1 text='Pholeport' extraStyles='text-[#121212] mb-10' />
       <form onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)} className='grid grid-cols-3 gap-5'>
-        <input type="file" {...register('kmz', { required: true })} accept=".kmz" className='w-full text-sm text-gray-500 col-span-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200' />
+        <input type="file" {...register('kmz', { required: true })} accept=".kmz" className='w-full text-lg text-gray-500 col-span-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-lg file:font-semibold file:bg-blue-100 file:text-[#3992ff] hover:file:bg-blue-200' />
         <Input register={register} field='id' rules={{ required: true, minLength: 5, maxLength: 5 }} errors={errors} errorMessage='Campo obrigatório de 5 caracteres' />
         <Input register={register} field='titulo' rules={{ required: true }} errors={errors} errorMessage='Campo obrigatório' />
         <Input register={register} field='seguimento' rules={{ required: true }} errors={errors} errorMessage='Campo obrigatório' />
@@ -67,7 +67,7 @@ function App() {
         <Button type='submit' text='Gerar relatório' onClick={() => { setErrorMessage(null); setSummary(null) }} extraStyles='bg-[#3992ff] hover:bg-blue-600 text-white col-span-3 mt-3 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent focus:ring-blue-200 transition-colors duration-200' />
         {isSubmitting && !summary && !errorMessage ? <p className='font-sans text-lg font-medium text-orange-500'>Processando...</p> : ''}
         {summary && !errorMessage && !isSubmitting ? <Result poles_amount={summary?.poles_amount} photos_amount={summary?.photos_amount} poles_without_photos={summary?.poles_without_photos} timing={summary?.timing} /> : ''}
-        {errorMessage && !isSubmitting && !summary ? <span className='w-full font-sans text-lg font-bold text-red-600 whitespace-nowrap'>{errorMessage.includes(': Error:') ? errorMessage.split(': Error:')[1] : errorMessage}</span> : ''}
+        {errorMessage && !isSubmitting && !summary ? <span className='w-full font-sans text-lg font-semibold text-red-800 whitespace-nowrap'>{errorMessage.includes(': Error:') ? errorMessage.split(': Error:')[1] : errorMessage}</span> : ''}
       </form>
     </div>
   )
