@@ -1,24 +1,28 @@
-import { FieldValues, UseFormRegister } from 'react-hook-form';
+import { FieldErrors, FieldValues, RegisterOptions, UseFormRegister } from 'react-hook-form';
 import { classNames } from '../util/classNames';
 
 type InputProps = {
   register: UseFormRegister<FieldValues>;
   field: string;
+  rules: RegisterOptions;
+  errors: FieldErrors;
+  errorMessage: string;
   label?: string;
   extraStyles?: string;
 };
 
-export const Input = ({ register, field, label, extraStyles }: InputProps) => {
+export const Input = ({ register, field, rules, errors, errorMessage, label, extraStyles }: InputProps) => {
   return (
     <div className='flex flex-col gap-2'>
-      <label className='uppercase font-sans font-medium text-sm text-gray-500'>{label || field}</label>
+      <label className='font-sans text-sm font-medium text-gray-500 uppercase'>{label || field}</label>
       <input
-        {...register(field)}
+        {...register(field, rules)}
         className={classNames(
-          'border rounded text-lg h-10 px-2 w-full focus:outline-none focus:ring focus:ring-offset-1 focus:ring-offset-transparent focus:ring-gray-200 transition-colors duration-200',
+          'relative w-full h-10 pl-3 pr-10 text-left bg-white border-2 border-gray-200 rounded-lg shadow-md cursor-default focus:border-0 focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-blue-300 sm:text-sm',
           extraStyles || ''
         )}
       />
+      {errors[field] && <p className='font-sans text-xs font-medium text-red-800'>{errorMessage}</p>}
     </div>
   );
 };

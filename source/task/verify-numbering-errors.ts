@@ -1,6 +1,6 @@
-const placemarks_numbering_errors: number[] = [];
-
-export function verify_numbering_errors(placemark_names: { name: number | string, index: number }[]): boolean {  
+export function verify_numbering_errors(placemark_names: { name: number | string, index: number }[]): boolean {
+  const placemarks_numbering_errors: number[] = [];
+  
   if (placemark_names[0].name !== 1) throw new Error('Cadê o marcador 1? A numeração deve começar nele');
   placemark_names.filter((value, i) => {
     if (i < placemark_names.length - 1) {

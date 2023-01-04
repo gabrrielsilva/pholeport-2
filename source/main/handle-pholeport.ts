@@ -36,10 +36,10 @@ export async function handle_pholeport({ id, titulo, seguimento, localidade, sit
   const placemark_names: { name: number, index: number }[] = []; // for poles
   const path_names: { name: string, index: number }[] = []; // for ducts
 
-  const geo_json = convert_kml_to_geojson(kmz_extracted + '/doc.kml');
+  const geo_json = convert_kml_to_geojson(kmz_extracted + '/doc.kml');  
 
   // filters the markers that will be used
-  for (const element of geo_json.features) {
+  for await (const element of geo_json.features) {
     if (element?.properties?.name) {
       const element_name = (element?.properties?.name as string).replace(/["​]/g, ''); // this fixes a bug in Google Earth where some placemarks have the character U+200b in the name
       if (Number(element_name) && !/[a-zA-Z]/g.test(element_name)) placemark_names.push({ name: +element_name, index: geo_json.features.indexOf(element) });
