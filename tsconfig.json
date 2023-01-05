@@ -3,7 +3,7 @@
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
+    "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -17,10 +17,10 @@
     "rootDir": ".",
     "baseUrl": ".",
     "sourceMap": true,
-    "outDir": "dist",
+    "outDir": "build",
     "noImplicitAny": true,
   },
   "include": ["source"],
-  "exclude": ["/source/**/*.tsx", "node_modules"],
+  "exclude": ["/source/**/*.tsx", "node_modules", "kmz_extracted"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

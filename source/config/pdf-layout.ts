@@ -1,3 +1,4 @@
+import path from 'node:path';
 
 const photo_width = 120,
       photo_height = 150,
@@ -5,10 +6,10 @@ const photo_width = 120,
       photo_gap = 30,
       fonts = {
         Roboto: {
-          normal: 'public/font/Roboto-Regular.ttf',
-          bold: 'public/font/Roboto-Medium.ttf',
-          italics: 'public/font/Roboto-Italic.ttf',
-          bolditalics: 'public/font/Roboto-MediumItalic.ttf'
+          normal: path.resolve(__dirname, '..', 'asset', 'font', 'Roboto-Regular.ttf'),
+          bold: path.resolve(__dirname, '..', 'asset', 'font', 'Roboto-Medium.ttf'),
+          italics: path.resolve(__dirname, '..', 'asset', 'font', 'Roboto-Italic.ttf'),
+          bolditalics: path.resolve(__dirname, '..', 'asset', 'font', 'Roboto-MediumItalic.ttf')
         },
       },
       header_widths = ['20%', '36%', '12%', '12%', '20%'],
