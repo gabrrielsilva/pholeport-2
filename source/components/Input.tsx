@@ -18,7 +18,7 @@ export const Input = ({ register, field, rules, errors, errorMessage, label, ext
       <input
         {...register(field, rules)}
         className={classNames(
-          'relative w-full h-10 pl-3 pr-10 text-left bg-white border-2 border-gray-200 rounded-lg shadow-md cursor-default focus:border-0 focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-blue-300 sm:text-sm',
+          'relative w-full h-10 pl-3 pr-10 text-left bg-white border border-gray-200 rounded-lg shadow-md cursor-default focus:border-0 focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-blue-300 sm:text-sm',
           extraStyles || ''
         )}
       />

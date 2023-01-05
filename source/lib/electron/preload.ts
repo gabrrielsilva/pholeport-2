@@ -9,7 +9,7 @@ type Data = {
   versao: string;
   input_file_path: string;
   left_logo: string;
-  right_logo: string;
+  right_logo: string
 };
 
 contextBridge.exposeInMainWorld('pholeport', {

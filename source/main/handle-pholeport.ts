@@ -17,7 +17,7 @@ export type Input = {
   versao: string,
   input_file_path: string,
   left_logo: string,
-  right_logo: string,
+  right_logo: string
 }
 
 type Output = {
@@ -28,9 +28,19 @@ type Output = {
   timing: number
 }
 
-export async function handle_pholeport({ id, titulo, seguimento, localidade, site_abordagem, versao, input_file_path, left_logo, right_logo }: Input): Promise<Output> {
+export async function handle_pholeport({ 
+  id, 
+  titulo, 
+  seguimento, 
+  localidade, 
+  site_abordagem, 
+  versao, 
+  input_file_path, 
+  left_logo, 
+  right_logo, 
+}: Input): Promise<Output> {
   let start_time = Date.now();
-
+  
   await handle_kmz_file(input_file_path);
 
   const placemark_names: { name: number, index: number }[] = []; // for poles
@@ -85,9 +95,7 @@ export async function handle_pholeport({ id, titulo, seguimento, localidade, sit
       for (let i = 0; i < path_names_sorted.length; i++) {
         const path = geo_json.features[path_names_sorted[i].index]; // O(1)
         const path_photos = JSON.parse(path?.properties?.com_exlyo_mapmarker_images_with_ext as string) as { file_rel_path: string, file_extension: string }[];
-          
-        photos_amount += path_photos.length;
-          
+                    
         for (let i = 0; i < path_photos.length; i++) {          
           const column = create_photo_column('Subterrâneo', [path_photos[i], path_photos[i + 1]]);
           photo_columns.push(column);
@@ -107,7 +115,10 @@ export async function handle_pholeport({ id, titulo, seguimento, localidade, sit
     }
     
     const header = create_header(id, titulo, seguimento, localidade, site_abordagem, versao, left_logo, right_logo);
-    create_pdf(`TIM_PPIR_ID${id}_RF_R00`, header, photo_rows);
+    const output_file_path = input_file_path.split('\\');
+    output_file_path.pop(); // remove filename from path
+    
+    create_pdf(`${output_file_path.join('/')}/TIM_PPIR_ID${id}_RF_R00`, header, photo_rows);
 
     return {
       poles_amount: placemark_names.length,

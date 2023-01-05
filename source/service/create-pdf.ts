@@ -6,7 +6,7 @@ import { pdf_style } from '../config/pdf-style';
 
 const printer = new PdfPrinter(fonts);
 
-export function create_pdf(filename: string, header: any, layout: any[]) {
+export function create_pdf(path: string, header: any, layout: any[]) {
   const doc_definition: TDocumentDefinitions = {
     pageSize: 'A4',
     pageOrientation: 'portrait',
@@ -18,7 +18,7 @@ export function create_pdf(filename: string, header: any, layout: any[]) {
   }
 
   const pdf = printer.createPdfKitDocument(doc_definition);
-  const write_stream = fs.createWriteStream(filename + '.pdf');
+  const write_stream = fs.createWriteStream(path + '.pdf');
 
   pdf.pipe(write_stream);
   pdf.end();

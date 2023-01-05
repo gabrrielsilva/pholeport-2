@@ -16,7 +16,7 @@ type FormData = {
   site_abordagem: string,
   versao: string,
   left_logo: string, 
-  right_logo: string
+  right_logo: string,
 }
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
   const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm();
 
   async function onSubmit({ kmz, id, titulo, seguimento, localidade, site_abordagem, versao, left_logo, right_logo }: FormData) {                
-    try {
+    try {      
       const summary = await window.pholeport.handle_pholeport({ 
         id, 
         titulo, 
@@ -54,7 +54,7 @@ function App() {
   return (
     <div className='w-screen h-screen p-10'>
       <H1 text='Pholeport' extraStyles='text-[#121212] mb-10' />
-      <form onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)} className='grid grid-cols-3 gap-5'>
+      <form id='mainForm' onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)} className='grid grid-cols-3 gap-5'>
         <input type="file" {...register('kmz', { required: true })} accept=".kmz" className='w-full text-lg text-gray-500 col-span-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-lg file:font-semibold file:bg-blue-100 file:text-[#3992ff] hover:file:bg-blue-200' />
         <Input register={register} field='id' rules={{ required: true, minLength: 5, maxLength: 5 }} errors={errors} errorMessage='Campo obrigatório de 5 caracteres' />
         <Input register={register} field='titulo' rules={{ required: true }} errors={errors} errorMessage='Campo obrigatório' />
