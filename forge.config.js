@@ -9,7 +9,7 @@
     {
       name: '@electron-forge/maker-squirrel',
       config: {
-        certificateFile: './77Z.pfx',
+        certificateFile: './cert.pfx',
       },
     },
     {

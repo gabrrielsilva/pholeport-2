@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Button } from './components/Button';
-import { Input } from './components/Input';
-import { Listbox } from './components/Listbox';
-import { Result } from './components/Result';
-import { H1 } from './components/typography/H1';
-import getErrorMessage from './util/getErrorMessage';
+import { Button } from './component/Button';
+import { Input } from './component/Input';
+import { Listbox } from './component/Listbox';
+import { Result } from './component/Result';
+import { H1 } from './component/typography/H1';
+import get_error_message from './util/get-error-message';
 
 type FormData = {
   kmz: FileList,
@@ -20,10 +20,10 @@ type FormData = {
 }
 
 function App() {
+  const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm();
   const [logos, setLogos] = useState<string[]>([]);
   const [summary, setSummary] = useState<{ poles_amount: number, photos_amount: number, poles_without_photos: number, timing: number }>(null);
   const [errorMessage, setErrorMessage] = useState('');
-  const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm();
 
   async function onSubmit({ kmz, id, titulo, seguimento, localidade, site_abordagem, versao, left_logo, right_logo }: FormData) {                
     try {      
@@ -41,15 +41,11 @@ function App() {
   
       setSummary(summary);
     } catch (e) {      
-      setErrorMessage(getErrorMessage(e));
+      setErrorMessage(get_error_message(e));
     }
   }
 
-  async function getLogos() {
-    setLogos(await window.pholeport.get_logos());
-  }
-
-  useEffect(() => { getLogos() }, []);
+  useEffect(() => { window.pholeport.get_logos().then(logos => setLogos(logos)) }, []);
 
   return (
     <div className='w-screen h-screen p-10'>

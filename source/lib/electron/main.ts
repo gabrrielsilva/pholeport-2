@@ -1,32 +1,23 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'node:path';
-import url from 'url';
-
-// if (import('electron-squirrel-startup')) app.quit();
 
 function create_window() {
-  const startUrl = process.env.ELECTRON_START_URL || url.format({
-    pathname: path.join(__dirname, '../../index.html'),
-    protocol: 'file:',
-    slashes: true
-  })
+  const start_url = process.env.ELECTRON_START_URL || `file:\\\\${path.join(__dirname, '../../index.html')}`;
 
   const window = new BrowserWindow({
     width: 800,
     height: 800,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: true
-    },
+    webPreferences: { preload: path.join(__dirname, 'preload.js'), nodeIntegration: true },
   });
 
   window.removeMenu();
-  window.loadURL(startUrl);
+  window.loadURL(start_url);
 }
 
-app.whenReady().then(async () => {
+app.on('ready', async () => {
   await import('./main-process/pholeport-async');
   await import('./main-process/logos-async');
+  
   create_window();
 });
 
