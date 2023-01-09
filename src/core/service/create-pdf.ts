@@ -3,10 +3,11 @@ import PdfPrinter from 'pdfmake';
 import { TDocumentDefinitions } from 'pdfmake/interfaces';
 import { fonts } from '../config/pdf-layout';
 import { pdf_style } from '../config/pdf-style';
+import { compress_pdf } from './compress-pdf';
 
 const printer = new PdfPrinter(fonts);
 
-export function create_pdf(filepath: string, header: any, layout: any[]) {
+export async function create_pdf(filepath: string, header: any, layout: any[]) {
   const doc_definition: TDocumentDefinitions = {
     pageSize: 'A4',
     pageOrientation: 'portrait',
@@ -22,4 +23,6 @@ export function create_pdf(filepath: string, header: any, layout: any[]) {
 
   pdf.pipe(write_stream);
   pdf.end();
+
+  compress_pdf(filepath);
 }

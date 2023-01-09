@@ -2,10 +2,10 @@
   "name": "pholeport-2",
   "version": "1.0.0",
   "description": "Gerador de relatórios fotográficos",
-  "main": "out/main/index.js",
+  "main": "dist/main/index.js",
   "scripts": {
     "dev": "electron-vite dev",
-    "build": "electron-vite build && copyfiles ./public/**/*.{png,ttf} out",
+    "build": "electron-vite build && copyfiles ./public/**/*.{png,ttf} out && copyfiles -f ./src/core/script/shrinkpdf.bat out/script",
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make"

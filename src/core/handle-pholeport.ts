@@ -1,5 +1,4 @@
 import { kmz_extracted } from './config/path';
-import { compress_photos } from './service/compress-photos';
 import { convert_kml_to_geojson } from './service/convert-kml-to-geojson';
 import { create_pdf } from './service/create-pdf';
 import { create_header } from './task/create-header';
@@ -66,7 +65,6 @@ export async function handle_pholeport({
     const photo_rows: any[] = [];
     
     await rename_photos_to_png();
-    await compress_photos();
     
     let photos_amount = 0;
     let page_break = '';

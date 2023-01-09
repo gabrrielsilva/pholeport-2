@@ -7,7 +7,7 @@ function create_window() {
   const window = new BrowserWindow({
     width: 800,
     height: 800,
-    // autoHideMenuBar: true,
+    autoHideMenuBar: true,
     webPreferences: { preload: path.join(__dirname, '../preload/index.js'), nodeIntegration: true },
   });
 
