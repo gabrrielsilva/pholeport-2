@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import Logo from '../../public/image/infinitel.png';
 import { Button } from './component/Button';
 import { Gradient } from './component/Gradient';
 import { Input } from './component/Input';
@@ -54,7 +55,7 @@ function App() {
       <header className='flex justify-between w-full'>
         <H1 text='Pholeport' extraStyles='text-white mb-10' />
         <div className='-mt-2 text-center'>
-          <img src="/image/infinitel.png" alt="infinitel" className='h-12' />
+          <img src={Logo} alt="infinitel" className='h-12' />
           <p className='text-gray-400'>&copy; Infinitel</p>
         </div>
       </header>

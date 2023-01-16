@@ -8,7 +8,7 @@ const no_photo_path = path.join(__dirname, '../public/image/no-photo-infinitel.p
 
 export function create_photo_column(
   element_name: string, 
-  element_photos: { file_rel_path: string, file_extension: string }[],
+  element_photos: { file_rel_path: string | null, file_extension: string | null }[],
   element_coordinates?: number[]
   ) {
   const current_photo_folder_name = fs.readdirSync(kmz_extracted, { withFileTypes: true }).filter(dirent => dirent.isDirectory())[0].name;

@@ -8,7 +8,11 @@ function create_window() {
     width: 800,
     height: 800,
     autoHideMenuBar: true,
-    webPreferences: { preload: path.join(__dirname, '../preload/index.js'), nodeIntegration: true },
+    webPreferences: { 
+      preload: path.join(__dirname, '../preload/index.js'), 
+      nodeIntegration: true,
+      webSecurity: false
+    },
   });
 
   window.loadURL(start_url);

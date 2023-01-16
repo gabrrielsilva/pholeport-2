@@ -38,7 +38,7 @@ export async function handle_pholeport({
   input_file_path, 
   left_logo, 
   right_logo, 
-}: Input): Promise<Output> {
+}: Input): Promise<Output> {  
   let start_time = Date.now();
   
   await handle_kmz_file(input_file_path);
@@ -72,7 +72,9 @@ export async function handle_pholeport({
     if (placemark_names.length > 0) {
       for (let i = 0; i < placemark_names_sorted.length; i++) {        
         const placemark = geo_json.features[placemark_names_sorted[i].index]; // O(1)
-        const placemark_photos = JSON.parse(placemark?.properties?.com_exlyo_mapmarker_images_with_ext as string) as { file_rel_path: string, file_extension: string }[];
+        const placemark_photos = placemark?.properties?.com_exlyo_mapmarker_images_with_ext ? 
+          JSON.parse(placemark?.properties?.com_exlyo_mapmarker_images_with_ext as string) as { file_rel_path: string, file_extension: string }[]
+          : [{ file_rel_path: null, file_extension: null },{ file_rel_path: null, file_extension: null }];
         const placemark_coordinates = (placemark?.geometry as any).coordinates as Array<number>;
         
         photos_amount += placemark_photos.length;
@@ -94,8 +96,10 @@ export async function handle_pholeport({
     if (path_names.length > 0) {
       for (let i = 0; i < path_names_sorted.length; i++) {
         const path = geo_json.features[path_names_sorted[i].index]; // O(1)
-        const path_photos = JSON.parse(path?.properties?.com_exlyo_mapmarker_images_with_ext as string) as { file_rel_path: string, file_extension: string }[];
-                    
+        const path_photos = path?.properties?.com_exlyo_mapmarker_images_with_ext ? 
+          JSON.parse(path?.properties?.com_exlyo_mapmarker_images_with_ext as string) as { file_rel_path: string, file_extension: string }[]
+          : [{ file_rel_path: null, file_extension: null },{ file_rel_path: null, file_extension: null }];
+
         for (let i = 0; i < path_photos.length; i++) {          
           const column = create_photo_column('Subterrâneo', [path_photos[i], path_photos[i + 1]]);
           photo_columns.push(column);
