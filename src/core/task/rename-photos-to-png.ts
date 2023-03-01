@@ -6,6 +6,8 @@ export async function rename_photos_to_png(): Promise<void> {
     
   for await (const photo of fs.readdirSync(kmz_extracted + '/' + photo_folder_name.name)) {
     const photo_path = kmz_extracted + '/' + photo_folder_name.name + '/' + photo;
-    fs.renameSync(photo_path, photo_path + '.png');
+    if (!photo.endsWith('.png') && !photo.endsWith('.jpg')) {
+      fs.renameSync(photo_path, photo_path + '.png');
+    }
   }
 }

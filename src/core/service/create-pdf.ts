@@ -17,12 +17,11 @@ export async function create_pdf(filepath: string, header: any, layout: any[]) {
     styles: pdf_style,
     compress: true
   }
-
+  
   const pdf = printer.createPdfKitDocument(doc_definition);
   const write_stream = fs.createWriteStream(filepath);
 
   pdf.pipe(write_stream);
   pdf.end();
-
   compress_pdf(filepath);
 }

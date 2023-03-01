@@ -82,7 +82,7 @@ export async function handle_pholeport({
         const column = create_photo_column('Poste ' + placemark?.properties?.name, placemark_photos, placemark_coordinates); // create_photo_column is different for ducts
         photo_columns.push(column);
   
-        if (photo_columns.length === 2) {
+        if (photo_columns.length === 2 || placemark?.properties?.name == placemark_names.length) {
           const row = create_photo_row(photo_columns, page_break);
           photo_rows.push(row);
           photo_columns.length = 0;
@@ -122,7 +122,7 @@ export async function handle_pholeport({
     const output_file_path = input_file_path.split('\\');
     output_file_path.pop(); // remove filename from path
     
-    create_pdf(`${output_file_path.join('/')}/TIM_PPIR_ID${id}_RF_R00.pdf`, header, photo_rows);
+    await create_pdf(`${output_file_path.join('/')}/TIM_PPIR_ID${id}_RF_R00.pdf`, header, photo_rows);
 
     return {
       poles_amount: placemark_names.length,
